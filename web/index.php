@@ -28,7 +28,7 @@ $app->post('/bot', function() use($app) {
     if(!$data)
         return 'nioh';
 
-    if(!$data->secret !== getenv('VK_SECRET_TOKEN') && $data->type !== 'confirmation' )
+    if($data->secret !== getenv('VK_SECRET_TOKEN') && $data->type !== 'confirmation' )
         return 'nioh';
 
     switch( $data->type )
