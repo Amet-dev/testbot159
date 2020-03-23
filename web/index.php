@@ -41,7 +41,7 @@ $app->post('/bot', function() use($app) {
             // code...
             $request_params = array(
                 'user_id' => $data->object->user_id,
-                'massage' => 'Привет, это супер тупой бот'
+                'massage' => 'Привет, это супер тупой бот',
                 'access_token' => getenv('VK_TOKEN'),
                 'v' => '5.69'
             );
