@@ -1,6 +1,8 @@
 <?php
 
 require('../vendor/autoload.php');
+//подключаемые библиотеки
+use FormulaParser\FormulaParser;
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -45,10 +47,25 @@ $app->post('/bot', function() use($app) {
                 'access_token' => getenv('VK_TOKEN'),
                 'v' => '5.69'
             );
-
+            //формулы
+            $formula = $data->object->body;
+            $precision = 2; // Number of digits after the decimal point
+            try {
+                $parser = new FormulaParser($formula, $precision);
+                $result = $parser->getResult(); // [0 => 'done', 1 => 16.38]
+        if($result[0]=='done'){
+        $request_params['message'] = $formula . '=' . number_format($result['1'], $precision,'.',' ');
+        }else {
+            $request_params['message'] = 'Я умею решать примеры, если вы написали его неправильно это не моя вина)';
+        }
+            } catch (\Exception $e) {
+                $request_params['message'] = 'что-то сложновато';
+            }
+            //отсылка сообщения от бота
             file_get_contents('https://api.vk.com/method/messages.send?' . http_build_query($request_params));
 
             return 'ok';
+            // code_end...
             break;
     }
 
