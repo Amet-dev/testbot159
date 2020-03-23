@@ -37,11 +37,11 @@ $app->post('/bot', function() use($app) {
             return getenv('VK_CONFIRMATION_CODE');
             break;
 
-        case 'massage_new':
+        case 'message_new':
             // code...
             $request_params = array(
-                'user_id' => $data->object->from_id,
-                'massage' => 'П',
+                'user_id' => $data->object->user_id,
+                'message' => 'Ay',
                 'access_token' => getenv('VK_TOKEN'),
                 'v' => '5.69'
             );
