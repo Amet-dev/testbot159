@@ -11,16 +11,16 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 ));
 
 // Register view rendering
-// $app->register(new Silex\Provider\TwigServiceProvider(), array(
-//     'twig.path' => __DIR__.'/views',
-// ));
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => __DIR__.'/views',
+));
 
 // Our web handlers
 
 $app->get('/', function() use($app) {
-  // $app['monolog']->addDebug('logging output.');
-  // return $app['twig']->render('index.twig');
-  return "hello world";
+  $app['monolog']->addDebug('logging output.');
+  return $app['twig']->render('index.twig');
+  // return "hello world";
 });
 $app->post('/bot', function() use($app) {
     $data = json_decode(file_get_contents('php://input'));
