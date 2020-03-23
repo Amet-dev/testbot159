@@ -40,7 +40,7 @@ $app->post('/bot', function() use($app) {
         case 'massage_new':
             // code...
             $request_params = array(
-                'user_id' => $data->object->user_id,
+                'user_id' => $data->object->from_id,
                 'massage' => 'П',
                 'access_token' => getenv('VK_TOKEN'),
                 'v' => '5.69'
