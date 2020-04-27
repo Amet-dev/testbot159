@@ -71,13 +71,14 @@ $app->post('/bot', function() use($app) {
             );
             $user_info = json_decode(file_get_contents('https://api.vk.com/method/users.get?'.http_build_query($fifi)));
             $qwerty=$user_info->response[0]->first_name;
-                  $request_params['message'] = 'Привет '.$qwerty.http_build_query($fifi);
+                  $request_params['message'] = 'Привет '.$qwerty;
                 // code...
               break;
               case 'Пока':
               case 'пока':
-
-                $request_params['message'] = "пока";
+              ////
+                $request_params['message'] =
+                'пока'.json_decode(file_get_contents('https://api.vk.com/method/users.get?user_id={$data->object->user_id}&access_token={getenv('VK_TOKEN')}&v=5.69')->response[0]->first_name;
               break;
               default:
                 // code...
