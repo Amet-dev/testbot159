@@ -64,7 +64,7 @@ $app->post('/bot', function() use($app) {
               case 'привет':
               case 'Hello':
               case 'Hi':
-            $qwerty="привет "+ $data->object->user_id ;
+            $qwerty='привет '. $data->object->first_name ;
                   $request_params['message'] = $qwerty;
                 // code...
               break;
