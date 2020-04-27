@@ -71,7 +71,7 @@ $app->post('/bot', function() use($app) {
             );
             $user_info = json_decode(file_get_contents('https://api.vk.com/method/users.get?'.http_build_query($fifi)));
             $qwerty=$user_info->response[0]->first_name;
-                  $request_params['message'] = 'name'.$qwerty.'name';
+                  $request_params['message'] = 'Привет '.$qwerty;
                 // code...
               break;
               case 'Пока':
