@@ -78,7 +78,7 @@ $app->post('/bot', function() use($app) {
               case 'пока':
               ////
                 $request_params['message'] =
-                'пока'.json_decode(file_get_contents('https://api.vk.com/method/users.get?user_id={$data->object->user_id}&access_token={getenv('VK_TOKEN')}&v=5.69')->response[0]->first_name;
+                'пока'.json_decode(file_get_contents('https://api.vk.com/method/users.get?user_id={$data->object->user_id}&access_token={getenv('VK_TOKEN')}&v=5.69'))->response[0]->first_name;
               break;
               default:
                 // code...
