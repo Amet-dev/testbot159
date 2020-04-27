@@ -64,9 +64,13 @@ $app->post('/bot', function() use($app) {
               case 'привет':
               case 'Hello':
               case 'Hi':
+<<<<<<< HEAD
             $user_id=$data->object->user_id;
             $user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={ getenv('VK_TOKEN') }&v=5.69"));
             $qwerty='привет '. $user_info->response[0]->first_name;
+=======
+            $qwerty='привет '. $data->object->first_name ;
+>>>>>>> f19daa95c236a026f1cb1ae52c1d5bf83ff3a68e
                   $request_params['message'] = $qwerty;
                 // code...
               break;
