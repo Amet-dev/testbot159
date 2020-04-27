@@ -2,7 +2,7 @@
 
 require('../vendor/autoload.php');
 //подключаемые библиотеки
-use FormulaParser\FormulaParser;
+use FormulaParser\FormulaParser;//-----
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -40,27 +40,46 @@ $app->post('/bot', function() use($app) {
             break;
 
         case 'message_new':
-            // code...
+            // code...//создание сообщения для отправки
             $request_params = array(
-                'user_id' => $data->object->user_id,
-                'message' => 'Ay',
+                'user_id' => $data->object->user_id, //id кому отправляет
+                'message' => 'Ay',                   //текст который отправляет
                 'access_token' => getenv('VK_TOKEN'),
                 'v' => '5.69'
             );
+//-------
             //формулы
-            $formula = $data->object->body;
+            $formula = $data->object->body;//запись в переменную текста из сообщения
             $precision = 2; // Number of digits after the decimal point
-            try {
-                $parser = new FormulaParser($formula, $precision);
-                $result = $parser->getResult(); // [0 => 'done', 1 => 16.38]
-        if($result[0]=='done'){
+
+            $parser = new FormulaParser($formula, $precision);
+            $result = $parser->getResult(); // [0 => 'done', 1 => 16.38]//запись ответа
+        if($result[0]=='done'){                                              //если все ок то след строка записывает в ответ решение
         $request_params['message'] = $formula . '=' . number_format($result['1'], $precision,'.',' ');
         }else {
-            $request_params['message'] = 'Я умею решать примеры, если вы написали его неправильно это не моя вина)';
-        }
-            } catch (\Exception $e) {
-                $request_params['message'] = 'что-то сложновато';
+//-------
+            $request_params['message'] = 'Я умею решать примеры и еще кое что)';
+            switch ($data->object->body) {
+              case 'Привет':
+              case 'привет':
+              case 'Hello':
+              case 'Hi':
+                  $request_params['message'] = "привет "+ $data->object->user_id ;
+                // code...
+              break;
+              case 'Пока':
+              case 'пока':
+                $request_params['message'] = "пока";
+              break;
+              default:
+                // code...
+                break;
             }
+
+        }
+
+
+//-------
             //отсылка сообщения от бота
             file_get_contents('https://api.vk.com/method/messages.send?' . http_build_query($request_params));
 
