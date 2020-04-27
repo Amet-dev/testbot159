@@ -64,11 +64,14 @@ $app->post('/bot', function() use($app) {
               case 'привет':
               case 'Hello':
               case 'Hi':
-            $user_id=$data->object->user_id;
-            $token=getenv('VK_SECRET_TOKEN');
-            $user_info = json_decode(file_get_contents("https://api.vk.com/method/users.get?user_ids={$user_id}&access_token={ $token }&v=5.69"));
+            $fifi=array(
+                'user_id' => $data->object->user_id, //id кому отправляет
+                'access_token' => getenv('VK_TOKEN'),
+                'v' => '5.69'
+            );
+            $user_info = json_decode(file_get_contents('https://api.vk.com/method/users.get?'.http_build_query($fifi));
             $qwerty=$user_info->response[0]->first_name;
-                  $request_params['message'] = $qwerty;
+                  $request_params['message'] = 'name'.$qwerty.'name';
                 // code...
               break;
               case 'Пока':
