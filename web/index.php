@@ -69,7 +69,7 @@ $app->post('/bot', function() use($app) {
                 'access_token' => getenv('VK_TOKEN'),
                 'v' => '5.69'
             );
-            $user_info = json_decode(file_get_contents('https://api.vk.com/method/users.get?'.http_build_query($fifi));
+            $user_info = json_decode(file_get_contents('https://api.vk.com/method/users.get?'.http_build_query($fifi)));
             $qwerty=$user_info->response[0]->first_name;
                   $request_params['message'] = 'name'.$qwerty.'name';
                 // code...
