@@ -93,7 +93,7 @@ case 'эй':
 $request_params['message'] ='что?';
 break;
 case 'Как дела':
-  case 
+  case 'как дела':
 $request_params['message'] ='хорошо';
 break;
 
