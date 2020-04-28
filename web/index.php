@@ -87,7 +87,7 @@ case 'Салам':
                 'пока, '.$nam;
               break;
               case 'молодец':
-$request_params['message'] ='спасибо'
+$request_params['message'] ='спасибо';
 break;
 
 
