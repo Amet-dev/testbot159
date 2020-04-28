@@ -64,8 +64,7 @@ $app->post('/bot', function() use($app) {
               case 'привет':
 case 'хай':
 case 'Хай':
-case 'салам':
-case 'Салам':
+
               case 'Hello':
               case 'Hi':
             $fifi=array(
@@ -96,7 +95,12 @@ case 'Как дела':
   case 'как дела':
 $request_params['message'] ='хорошо';
 break;
-
+case 'салам':
+case 'Салам':
+  case 'селям алейкум':
+case 'Селям':
+$request_params['message'] ='алейкум селям';
+break;
               default:
                 // code...
                 break;
