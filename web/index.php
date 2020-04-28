@@ -61,7 +61,7 @@ $app->post('/bot', function() use($app) {
             $request_params['message'] = 'Я умею решать примеры и еще кое что;)';
             switch ($data->object->body) {
               case 'Привет':
-              case 'привет'
+              case 'привет':
 case 'хай':
 case 'Хай':
 case 'салам':
@@ -89,7 +89,13 @@ case 'Салам':
               case 'молодец':
 $request_params['message'] ='спасибо';
 break;
-
+case 'эй':
+$request_params['message'] ='что?';
+break;
+case 'Как дела':
+  case 
+$request_params['message'] ='хорошо';
+break;
 
               default:
                 // code...
