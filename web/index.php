@@ -58,10 +58,14 @@ $app->post('/bot', function() use($app) {
         $request_params['message'] = $formula . '=' . number_format($result['1'], $precision,'.',' ');
         }else {
 //-------
-            $request_params['message'] = 'Я умею решать примеры и еще кое что)';
+            $request_params['message'] = 'Я умею решать примеры и еще кое что;)';
             switch ($data->object->body) {
               case 'Привет':
-              case 'привет':
+              case 'привет'
+case 'хай':
+case 'Хай':
+case 'салам':
+case 'Салам':
               case 'Hello':
               case 'Hi':
             $fifi=array(
@@ -71,7 +75,7 @@ $app->post('/bot', function() use($app) {
             );
             $user_info = json_decode(file_get_contents('https://api.vk.com/method/users.get?'.http_build_query($fifi)));
             $qwerty=$user_info->response[0]->first_name;
-                  $request_params['message'] = 'Привет!!! '.$qwerty;
+                  $request_params['message'] = 'Привет, '.$qwerty;
                 // code...
               break;
               case 'Пока':
@@ -80,8 +84,13 @@ $app->post('/bot', function() use($app) {
               $tok=getenv('VK_TOKEN');
               $nam=json_decode(file_get_contents("https://api.vk.com/method/users.get?user_id={$data->object->user_id}&access_token={$tok}&v=5.69"))->response[0]->first_name;
                 $request_params['message'] =
-                'пока '.$nam;
+                'пока, '.$nam;
               break;
+              case 'молодец':
+$request_params['message'] ='спасибо'
+break;
+
+
               default:
                 // code...
                 break;
